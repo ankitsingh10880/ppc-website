@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Public Policy Club, FMS Delhi</title>
+  <meta name="description" content="Get in touch with the Public Policy Club, FMS Delhi, or partner with us on an event.">
+  <meta name="theme-color" content="#842800">
+  <meta property="og:title" content="Contact | Public Policy Club, FMS Delhi">
+  <meta property="og:description" content="Get in touch with the Public Policy Club, FMS Delhi, or partner with us on an event.">
+  <meta property="og:image" content="assets/img/ppc-logo.jpg">
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/zilla-slab-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="assets/js/main.js"></script>
+  <!-- ANALYTICS: remove the two comment markers around the next line after setting up Umami (README, step 4) -->
+  <!-- <script defer src="https://YOUR-UMAMI-APP.vercel.app/script.js" data-website-id="YOUR-WEBSITE-ID"></script> -->
+</head>
+<body data-club-email="publicpolicyclub@fms.edu">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header on-dark">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <img src="assets/img/ppc-logo-192.jpg" alt="" width="52" height="52">
+        <span><span class="brand-name">Public Policy Club</span><span class="brand-sub">FMS, University of Delhi</span></span>
+      </a>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li class="nav-item--sub">
+            <button type="button" data-submenu aria-expanded="false" aria-controls="sub-publications">Publications <svg class="chev" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+            <ul class="subnav" id="sub-publications">
+              <li><a href="journal.html">Journal</a></li>
+              <li><a href="article-of-the-week.html">Article of the Week</a></li>
+            </ul>
+          </li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="page-head on-dark">
+      <div class="wrap">
+
+        <h1>Contact us</h1>
+        <p class="lede">Questions, speaker suggestions or partnership ideas. We reply within a week.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="wrap contact-grid">
+        <div>
+          <h2>Send a message</h2>
+          <p class="muted">Fields marked <span class="req" aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
+          <!-- FORMS: replace YOUR_FORM_ENDPOINT with your form service URL (README, "Forms") -->
+          <form class="form" action="https://YOUR_FORM_ENDPOINT/contact" method="post" data-js-form data-umami-event="contact-submit" data-success="Message sent. We'll reply within a week." novalidate>
+            <input type="hidden" name="form" value="contact">
+            <div class="field">
+              <label for="c-name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input id="c-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="c-email">Email address <span class="req" aria-hidden="true">*</span></label>
+              <input id="c-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="c-topic">What is it about?</label>
+              <select id="c-topic" name="topic">
+                <option>General question</option>
+                <option>Joining the club</option>
+                <option>Speaking at an event</option>
+                <option>Partnership or sponsorship</option>
+                <option>Writing for the journal</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="c-msg">Message <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="c-msg" name="message" required></textarea>
+            </div>
+            <div><button class="btn" type="submit">Send message</button></div>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="contact-aside">
+          <section aria-labelledby="direct">
+            <h2 id="direct">Write to us directly</h2>
+            <p><a href="mailto:publicpolicyclub@fms.edu">publicpolicyclub@fms.edu</a></p>
+            <p>Public Policy Club, Faculty of Management Studies,<br>University of Delhi, Delhi 110007</p>
+          </section>
+          <section aria-labelledby="follow">
+            <h2 id="follow">Follow the club</h2>
+            <ul class="footer-links">
+              <li><a href="https://www.instagram.com/publicpolicyclub_fms/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://www.linkedin.com/company/public-policy-club-fms-delhi/posts/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+          </section>
+          <section id="partner" aria-labelledby="partner-h" data-impression="contact-partner">
+            <h2 id="partner-h">Partner with us</h2>
+            <p>We partner with think tanks, policy consultancies and companies on talks, panels, workshops and case competitions. Partners reach FMS students interested in policy and are credited on our events and this website.</p>
+            <p>Choose "Partnership or sponsorship" in the form, or write to us directly.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer on-dark">
+    <div class="wrap">
+      <div class="footer-grid">
+        <section aria-labelledby="ft-news">
+          <h2 id="ft-news">Get the Article of the Week</h2>
+          <p>One policy read in your inbox each week. No other emails.</p>
+          <!-- FORMS: replace YOUR_FORM_ENDPOINT with your form service URL (README, "Forms") -->
+          <form class="newsletter" action="https://YOUR_FORM_ENDPOINT/newsletter" method="post" data-js-form data-umami-event="newsletter-signup" data-success="You're subscribed. Look out for the next Article of the Week.">
+            <input type="hidden" name="form" value="newsletter">
+            <div class="field">
+              <label for="nl-email-contact">Email address</label>
+              <input id="nl-email-contact" name="email" type="email" autocomplete="email" required>
+            </div>
+            <button class="btn" type="submit">Subscribe</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+        <section aria-labelledby="ft-explore">
+          <h2 id="ft-explore">Explore</h2>
+          <ul class="footer-links">
+            <li><a href="about.html">About the club</a></li>
+            <li><a href="journal.html">PPC Journal</a></li>
+            <li><a href="article-of-the-week.html">Article of the Week</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html#partner">Partner with us</a></li>
+          </ul>
+        </section>
+        <section aria-labelledby="ft-contact">
+          <h2 id="ft-contact">Contact</h2>
+          <ul class="footer-links">
+            <li><a href="mailto:publicpolicyclub@fms.edu">publicpolicyclub@fms.edu</a></li>
+            <li><a href="https://www.instagram.com/publicpolicyclub_fms/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/public-policy-club-fms-delhi/posts/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+          <p class="brand-sub" style="margin-top:1rem">Faculty of Management Studies,<br>University of Delhi, Delhi 110007</p>
+        </section>
+      </div>
+      <div class="footer-base">
+        <p style="margin:0">© <span data-year>2026</span> Public Policy Club, FMS Delhi</p>
+        <p style="margin:0">Website designed and developed by Ankit Singh, Batch of 2027</p>
+        <p style="margin:0"><a href="privacy.html">Privacy</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
