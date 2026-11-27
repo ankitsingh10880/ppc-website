@@ -117,22 +117,20 @@ A static site can't send email itself, so the forms post to **Google Forms** (fr
 
 ### Create the two Google Forms (use the club Google account)
 
-**Contact** form, four questions, with titles typed exactly like this:
+The script `tools/google-forms-setup.gs` does all of this in one run: it builds the Contact form (Name, Email, Topic, Message) and the Newsletter form (Email), links each to a response Sheet, applies the settings the website needs, and sets up the email alert described below.
 
-| Question title | Type | Required |
-| --- | --- | --- |
-| `Name` | Short answer | Yes |
-| `Email` | Short answer | Yes |
-| `Topic` | Dropdown with exactly these options: General question, Joining the club, Speaking at an event, Partnership or sponsorship, Writing for the journal | No |
-| `Message` | Paragraph | Yes |
+1. Signed in to the club Google account, go to **script.google.com → New project**. Replace the sample code with the whole of `tools/google-forms-setup.gs`, and name the project "PPC Website Forms".
+2. Pick **setupForms** in the function menu at the top → **Run**.
+3. Google asks for permission. Choose the club account → **Advanced** → **Go to PPC Website Forms** → **Allow**. This is normal for your own script.
+4. The execution log, and an email to you, lists each form's `action` URL and its `entry.NNN` field IDs. Use them in the next step (or send them to whoever updates the website).
 
-**Newsletter** form, one question: `Email`, Short answer, Required.
+Running it again is safe: it reuses the forms it already made. Don't rename or delete questions in either form afterwards.
 
-In **Settings** for both forms, make sure **"Collect email addresses" is off** and **"Restrict to users in … and its trusted organisations" / "Requires sign in" is off**. Otherwise the website's submissions are rejected silently.
+To make the forms by hand instead: use exactly those question titles, give Topic the same five options as the dropdown in `contact.html`, and in **Settings** turn **off** "Collect email addresses" and any "requires sign-in" option, or Google silently rejects the website's submissions.
 
 ### Connect them to the site
 
-For each form: ⋮ → **Get pre-filled link**, type a sample answer in every question, click **Get link**, copy it. It looks like
+If you used the script, its output already gives each form's `action` URL and `entry.NNN` IDs: skip to step 3. Otherwise, for each form: ⋮ → **Get pre-filled link**, type a sample answer in every question, click **Get link**, copy it. It looks like
 `https://docs.google.com/forms/d/e/FORM_ID/viewform?usp=pp_url&entry.111=Test&entry.222=...`
 
 1. Take the part up to `/viewform` and change it to `/formResponse`. That is the form's action URL.
@@ -144,39 +142,9 @@ Send a test from the live site and check it appears under the form's **Responses
 
 ### Email each contact message to the club inbox
 
-Google's own notification (Responses → ⋮ → **Get email notifications for new responses**) only says "new response" with a link. This script emails the full message instead, with Reply-To set to the sender so you can answer straight from Gmail. Free, up to about 100 emails a day.
+The setup script installs this automatically. Every Contact submission is emailed to `publicpolicyclub@fms.edu` with the name, email, topic and message, and Reply-To set to the sender, so you can answer straight from Gmail (free, up to about 100 emails a day). To change the inbox, edit `CLUB_INBOX` at the top of the script in Apps Script. If an email doesn't arrive, check **Executions** in the Apps Script project for the error.
 
-1. Open the Contact form → ⋮ → **Apps Script**. Delete what is there and paste:
-
-```js
-var CLUB_INBOX = "publicpolicyclub@fms.edu";
-
-function onContactSubmit(e) {
-  var d = {};
-  e.response.getItemResponses().forEach(function (r) {
-    d[r.getItem().getTitle()] = r.getResponse();
-  });
-  var name = d.Name || "Someone";
-  var email = d.Email || "";
-  var topic = d.Topic || "General question";
-  var mail = {
-    to: CLUB_INBOX,
-    name: "PPC Website",
-    subject: "Website message: " + topic + " — " + name,
-    body: "Name: " + name + "\nEmail: " + email + "\nTopic: " + topic +
-          "\n\n" + (d.Message || "") +
-          "\n\n—\nSent from the Contact form on the PPC website. Reply to this email to answer " + name + "."
-  };
-  if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) mail.replyTo = email;
-  MailApp.sendEmail(mail);
-}
-```
-
-2. Save (💾). On the left, open **Triggers** (⏰) → **Add trigger**: function `onContactSubmit`, event source **From form**, event type **On form submit** → Save.
-3. Google asks for permission. Choose the club account → **Advanced** → **Go to (project name)** → **Allow**. This is normal for your own script.
-4. Submit a test message from the website. It should arrive in the club inbox within a minute. If not, check **Executions** in Apps Script for the error.
-
-For the **Newsletter** form, just turn on the standard email notification (or none). Addresses collect in the response sheet (Responses → **Link to Sheets**); export them when you send the Article of the Week.
+For the **Newsletter** form there is no per-sign-up email; addresses collect in its response Sheet. Export them when you send the Article of the Week.
 
 ## 6. Updating content (no coding needed)
 
