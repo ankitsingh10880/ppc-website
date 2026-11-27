@@ -128,7 +128,7 @@ Edit files on GitHub (open the file, select the pencil icon, make changes, **Com
 | Task | Where | How |
 |---|---|---|
 | Add, update or remove an event | `events.html` | See section 7, "Managing events (for admins)". |
-| New Article of the Week | `article-of-the-week.html` | Add last week's title to "Earlier articles", then replace the title, author, date and body. |
+| New Article of the Week | `article-of-the-week.html` | Add last week's title to "Earlier articles" (the first time, un-comment that section, see the ARCHIVE comment in the file), then replace the title, author, date and body. |
 | Add team members | `team.html` | Add an `<li>` with the name to the right role's `<ul class="roster">`. For a new year, copy the newest `<section>` and follow the `TEAM:` comment inside it. |
 | Add photos | `gallery.html` | Upload to `assets/img/gallery/` (about 1200 px wide) and replace a placeholder with the commented `<figure>` block. **Always describe the photo in `alt`.** |
 | New journal volume | `journal.html` | Upload the PDF to `assets/docs/`, then copy the volume section and update it. |

@@ -294,8 +294,6 @@ ul, ol { padding-left: 1.25rem; }
 .archive li { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
 .archive a { font-family: var(--serif); font-weight: 600; font-size: var(--step-1); }
 .archive p { margin: 0.2rem 0 0; color: var(--muted); font-size: var(--step--1); }
-/* Shown only when the archive list is empty */
-.archive:has(> li) + .archive-empty { display: none; }
 
 /* ---------- Events: an order paper ---------- */
 .events { list-style: none; padding: 0; margin: 1.5rem 0 0; border-top: 2px solid var(--ink); }
