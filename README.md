@@ -13,7 +13,7 @@ index.html                 Home: hero, motivation, mission, vision, foundation, 
 about.html                 About the club, goals, activities
 team.html                  Team rosters: Team 2027, Team 2026 and Founding Team (newest first)
 journal.html               Publications > Journal (Volume I, 2025)
-article-of-the-week.html   Publications > Article of the Week (Lorem Ipsum for now)
+article-of-the-week.html   Publications > Article of the Week
 events.html                Upcoming and past events
 gallery.html               Event photos (placeholders for now)
 contact.html               Contact form, email, social links, partner with us
@@ -222,7 +222,6 @@ Directly below the Upcoming list there is a `<div class="empty events-empty">` w
 ## 8. Placeholders to replace before launch
 
 - `YOUR_FORM_ENDPOINT` (section 5) and the Umami script (section 4)
-- Lorem Ipsum on the Article of the Week page
 - Team members and gallery photos
 - Mission, Vision and Motivation are **drafts** written from the club proposal and Dr. Dwivedi's foreword. Get them approved.
 
