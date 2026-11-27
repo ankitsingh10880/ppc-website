@@ -15,7 +15,7 @@ team.html                  Team rosters: Team 2027, Team 2026 and Founding Team 
 journal.html               Publications > Journal (Volume I, 2025)
 article-of-the-week.html   Publications > Article of the Week
 events.html                Upcoming and past events
-gallery.html               Event photos (grid hidden until the first photos are added)
+gallery.html               Event photos (none yet)
 contact.html               Contact form, email, social links, partner with us
 privacy.html               What the site collects
 404.html                   "Page not found"
@@ -130,7 +130,7 @@ Edit files on GitHub (open the file, select the pencil icon, make changes, **Com
 | Add, update or remove an event | `events.html` | See section 7, "Managing events (for admins)". |
 | New Article of the Week | `article-of-the-week.html` | Add last week's title to "Earlier articles" (the first time, un-comment that section, see the ARCHIVE comment in the file), then replace the title, author, date and body. |
 | Add team members | `team.html` | Add an `<li>` with the name to the right role's `<ul class="roster">`. For a new year, copy the newest `<section>` and follow the `TEAM:` comment inside it. |
-| Add photos | `gallery.html` | Upload to `assets/img/gallery/` (about 1200 px wide) and add a `<li>` using the commented `<figure>` block (the first time, un-comment the whole gallery section, see the GALLERY comment in the file). **Always describe the photo in `alt`.** |
+| Add photos | `gallery.html` | Upload to `assets/img/gallery/` (about 1200 px wide) and add a `<li>` using the commented `<figure>` block. **Always describe the photo in `alt`.** |
 | New journal volume | `journal.html` | Upload the PDF to `assets/docs/`, then copy the volume section and update it. |
 | Change colours or fonts | `assets/css/style.css` | Top of the file. Re-check contrast (see ACCESSIBILITY.md) before changing a colour. |
 
