@@ -246,7 +246,7 @@ Directly below the Upcoming list there is a `<div class="empty events-empty">` w
 
 ## 8. Placeholders to replace before launch
 
-- `YOUR_FORM_ENDPOINT`: connect the Google Forms (section 5); and the Umami script (section 4)
+- The Umami script (section 4)
 - Team members
 - Mission, Vision and Motivation are **drafts** written from the club proposal and Dr. Dwivedi's foreword. Get them approved.
 

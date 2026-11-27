@@ -60,20 +60,20 @@
         <div>
           <h2>Send a message</h2>
           <p class="muted">Fields marked <span class="req" aria-hidden="true">*</span><span class="visually-hidden">with an asterisk</span> are required.</p>
-          <!-- FORMS: replace YOUR_FORM_ENDPOINT with your form service URL (README, "Forms") -->
-          <form class="form" action="https://YOUR_FORM_ENDPOINT/contact" method="post" data-js-form data-umami-event="contact-submit" data-success="Message sent. We'll reply within a week." novalidate>
+          <!-- FORMS: posts to the club's Google Form. Field names are its entry IDs (README, "Forms") -->
+          <form class="form" action="https://docs.google.com/forms/d/e/1FAIpQLSdL2A74WveHIEfsvfMX2PKLiWEW_pOXjKaGjdSizx1dvekF3A/formResponse" method="post" data-js-form data-umami-event="contact-submit" data-success="Message sent. We'll reply within a week." novalidate>
             <input type="hidden" name="form" value="contact">
             <div class="field">
               <label for="c-name">Your name <span class="req" aria-hidden="true">*</span></label>
-              <input id="c-name" name="name" type="text" autocomplete="name" required>
+              <input id="c-name" name="entry.1582824349" type="text" autocomplete="name" required>
             </div>
             <div class="field">
               <label for="c-email">Email address <span class="req" aria-hidden="true">*</span></label>
-              <input id="c-email" name="email" type="email" autocomplete="email" required>
+              <input id="c-email" name="entry.1972111311" type="email" autocomplete="email" required>
             </div>
             <div class="field">
               <label for="c-topic">What is it about?</label>
-              <select id="c-topic" name="topic">
+              <select id="c-topic" name="entry.829210016">
                 <option>General question</option>
                 <option>Joining the club</option>
                 <option>Speaking at an event</option>
@@ -83,7 +83,7 @@
             </div>
             <div class="field">
               <label for="c-msg">Message <span class="req" aria-hidden="true">*</span></label>
-              <textarea id="c-msg" name="message" required></textarea>
+              <textarea id="c-msg" name="entry.569924125" required></textarea>
             </div>
             <div><button class="btn" type="submit">Send message</button></div>
             <p class="form-status" role="status" aria-live="polite"></p>
@@ -118,12 +118,12 @@
         <section aria-labelledby="ft-news">
           <h2 id="ft-news">Get the Article of the Week</h2>
           <p>One policy read in your inbox each week. No other emails.</p>
-          <!-- FORMS: replace YOUR_FORM_ENDPOINT with your form service URL (README, "Forms") -->
-          <form class="newsletter" action="https://YOUR_FORM_ENDPOINT/newsletter" method="post" data-js-form data-umami-event="newsletter-signup" data-success="You're subscribed. Look out for the next Article of the Week.">
+          <!-- FORMS: posts to the club's Google Form. Field names are its entry IDs (README, "Forms") -->
+          <form class="newsletter" action="https://docs.google.com/forms/d/e/1FAIpQLSejpMvzr6jneN-X5bQ-1Phx_YcDhQTkYWQsI-Cc69CM4DYXDA/formResponse" method="post" data-js-form data-umami-event="newsletter-signup" data-success="You're subscribed. Look out for the next Article of the Week.">
             <input type="hidden" name="form" value="newsletter">
             <div class="field">
               <label for="nl-email-contact">Email address</label>
-              <input id="nl-email-contact" name="email" type="email" autocomplete="email" required>
+              <input id="nl-email-contact" name="entry.582132185" type="email" autocomplete="email" required>
             </div>
             <button class="btn" type="submit">Subscribe</button>
             <p class="form-status" role="status" aria-live="polite"></p>

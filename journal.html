@@ -85,12 +85,12 @@
         <section aria-labelledby="ft-news">
           <h2 id="ft-news">Get the Article of the Week</h2>
           <p>One policy read in your inbox each week. No other emails.</p>
-          <!-- FORMS: replace YOUR_FORM_ENDPOINT with your form service URL (README, "Forms") -->
-          <form class="newsletter" action="https://YOUR_FORM_ENDPOINT/newsletter" method="post" data-js-form data-umami-event="newsletter-signup" data-success="You're subscribed. Look out for the next Article of the Week.">
+          <!-- FORMS: posts to the club's Google Form. Field names are its entry IDs (README, "Forms") -->
+          <form class="newsletter" action="https://docs.google.com/forms/d/e/1FAIpQLSejpMvzr6jneN-X5bQ-1Phx_YcDhQTkYWQsI-Cc69CM4DYXDA/formResponse" method="post" data-js-form data-umami-event="newsletter-signup" data-success="You're subscribed. Look out for the next Article of the Week.">
             <input type="hidden" name="form" value="newsletter">
             <div class="field">
               <label for="nl-email-journal">Email address</label>
-              <input id="nl-email-journal" name="email" type="email" autocomplete="email" required>
+              <input id="nl-email-journal" name="entry.582132185" type="email" autocomplete="email" required>
             </div>
             <button class="btn" type="submit">Subscribe</button>
             <p class="form-status" role="status" aria-live="polite"></p>
