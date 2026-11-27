@@ -62,7 +62,10 @@
   /* ---------- Forms ----------
      Each form posts to the URL in its action attribute. Until a real form
      service is connected (see README, "Forms"), the action contains
-     YOUR_FORM_ENDPOINT and the form shows a message instead of failing. */
+     YOUR_FORM_ENDPOINT and the form shows a message instead of failing.
+     Google Forms (action ending in /formResponse) don't let other sites read
+     their reply, so for those the post is sent "no-cors" and counted as sent
+     unless the network itself fails. */
   var CLUB_EMAIL = document.body.getAttribute("data-club-email") || "";
   document.querySelectorAll("form[data-js-form]").forEach(function (form) {
     var status = form.querySelector(".form-status");
@@ -86,9 +89,15 @@
       var btn = form.querySelector("[type=submit]");
       var label = btn ? btn.textContent : "";
       if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
-      fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      var isGoogle = form.action.indexOf("docs.google.com/forms/") !== -1;
+      var data = new FormData(form);
+      if (isGoogle) data.delete("form");
+      var req = isGoogle
+        ? fetch(form.action, { method: "POST", mode: "no-cors", body: new URLSearchParams(data) })
+        : fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } });
+      req
         .then(function (r) {
-          if (!r.ok) throw new Error(r.status);
+          if (!isGoogle && !r.ok) throw new Error(r.status);
           form.reset();
           say(form.getAttribute("data-success") || "Sent. Thank you.", false);
           track(form.getAttribute("data-umami-event") || "form-submit");

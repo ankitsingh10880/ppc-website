@@ -113,13 +113,70 @@ To track a new button, add `data-umami-event="name"` to it. To count views of a 
 
 ## 5. Forms (contact and newsletter)
 
-A static site can't send email itself, so the forms post to a free form service. Until one is connected, they show "This form is not connected yet. Email us at …".
+A static site can't send email itself, so the forms post to **Google Forms** (free, no submission limit, responses land in a Google Sheet). Until they are connected, the forms show "This form is not connected yet. Email us at …".
 
-1. Create a free account at **Formspree** (formspree.io) with the club email. Create two forms: "Contact" and "Newsletter".
-2. Copy each form's endpoint (`https://formspree.io/f/xxxxxxx`).
-3. In `contact.html`, replace the whole `action="https://YOUR_FORM_ENDPOINT/contact"` value with the Contact endpoint. In every page's footer, replace `https://YOUR_FORM_ENDPOINT/newsletter` with the Newsletter endpoint (find-and-replace across all files).
+### Create the two Google Forms (use the club Google account)
 
-Messages arrive in the club inbox. The newsletter form collects addresses in Formspree; export them when you send the Article of the Week.
+**Contact** form, four questions, with titles typed exactly like this:
+
+| Question title | Type | Required |
+| --- | --- | --- |
+| `Name` | Short answer | Yes |
+| `Email` | Short answer | Yes |
+| `Topic` | Dropdown with exactly these options: General question, Joining the club, Speaking at an event, Partnership or sponsorship, Writing for the journal | No |
+| `Message` | Paragraph | Yes |
+
+**Newsletter** form, one question: `Email`, Short answer, Required.
+
+In **Settings** for both forms, make sure **"Collect email addresses" is off** and **"Restrict to users in … and its trusted organisations" / "Requires sign in" is off**. Otherwise the website's submissions are rejected silently.
+
+### Connect them to the site
+
+For each form: ⋮ → **Get pre-filled link**, type a sample answer in every question, click **Get link**, copy it. It looks like
+`https://docs.google.com/forms/d/e/FORM_ID/viewform?usp=pp_url&entry.111=Test&entry.222=...`
+
+1. Take the part up to `/viewform` and change it to `/formResponse`. That is the form's action URL.
+2. Each `entry.NNN` belongs to one question, in the order you filled them in.
+3. In `contact.html`, set the Contact form's `action` to its action URL, and change the `name` of each field to its `entry.NNN` (`name` → Name's entry, `email` → Email's, `topic` → Topic's, `message` → Message's).
+4. In every page's footer, set the newsletter form's `action` to the Newsletter action URL and the email field's `name` to its `entry.NNN` (find-and-replace across all files).
+
+Send a test from the live site and check it appears under the form's **Responses** tab.
+
+### Email each contact message to the club inbox
+
+Google's own notification (Responses → ⋮ → **Get email notifications for new responses**) only says "new response" with a link. This script emails the full message instead, with Reply-To set to the sender so you can answer straight from Gmail. Free, up to about 100 emails a day.
+
+1. Open the Contact form → ⋮ → **Apps Script**. Delete what is there and paste:
+
+```js
+var CLUB_INBOX = "publicpolicyclub@fms.edu";
+
+function onContactSubmit(e) {
+  var d = {};
+  e.response.getItemResponses().forEach(function (r) {
+    d[r.getItem().getTitle()] = r.getResponse();
+  });
+  var name = d.Name || "Someone";
+  var email = d.Email || "";
+  var topic = d.Topic || "General question";
+  var mail = {
+    to: CLUB_INBOX,
+    name: "PPC Website",
+    subject: "Website message: " + topic + " — " + name,
+    body: "Name: " + name + "\nEmail: " + email + "\nTopic: " + topic +
+          "\n\n" + (d.Message || "") +
+          "\n\n—\nSent from the Contact form on the PPC website. Reply to this email to answer " + name + "."
+  };
+  if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) mail.replyTo = email;
+  MailApp.sendEmail(mail);
+}
+```
+
+2. Save (💾). On the left, open **Triggers** (⏰) → **Add trigger**: function `onContactSubmit`, event source **From form**, event type **On form submit** → Save.
+3. Google asks for permission. Choose the club account → **Advanced** → **Go to (project name)** → **Allow**. This is normal for your own script.
+4. Submit a test message from the website. It should arrive in the club inbox within a minute. If not, check **Executions** in Apps Script for the error.
+
+For the **Newsletter** form, just turn on the standard email notification (or none). Addresses collect in the response sheet (Responses → **Link to Sheets**); export them when you send the Article of the Week.
 
 ## 6. Updating content (no coding needed)
 
@@ -221,7 +278,7 @@ Directly below the Upcoming list there is a `<div class="empty events-empty">` w
 
 ## 8. Placeholders to replace before launch
 
-- `YOUR_FORM_ENDPOINT` (section 5) and the Umami script (section 4)
+- `YOUR_FORM_ENDPOINT`: connect the Google Forms (section 5); and the Umami script (section 4)
 - Team members
 - Mission, Vision and Motivation are **drafts** written from the club proposal and Dr. Dwivedi's foreword. Get them approved.
 
